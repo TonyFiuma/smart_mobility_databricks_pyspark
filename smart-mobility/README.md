@@ -1,4 +1,3 @@
-# TonyFiuma-smart-mobility-spark
 # 🚀 Smart Mobility Data Pipeline (Databricks)
 
 
