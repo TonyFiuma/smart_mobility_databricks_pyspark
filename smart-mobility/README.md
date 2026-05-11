@@ -20,7 +20,7 @@ The goal is to transform raw mobility data into **business-ready KPIs and intera
 
 ## 🏗️ Architecture
 
-![Overview Image](smart-mobility/images/Architecture.png)
+![Overview Image](images/Architecture.png)
 
 The pipeline follows the Medallion architecture:
 
