@@ -20,7 +20,7 @@ The goal is to transform raw mobility data into **business-ready KPIs and intera
 
 ## 🏗️ Architecture
 
-![Overview Image](images/ArchitectureDatabricks.png)
+![Overview Image](images/Architecture.png)
 
 The pipeline follows the Medallion architecture:
 
@@ -36,34 +36,44 @@ SQL View (BI layer)
 ↓
 Dashboard
 ---
+All notebooks orchestrate ETL logic implemented in the `src/` package for production-like modularity.
+
                     ┌──────────────────────┐
                     │     CSV Dataset      │
                     └─────────┬────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │   Bronze Layer       │
-                    │ Raw ingestion (Spark)│
-                    └─────────┬────────────┘
+                    ┌────────────────────────────────────────────┐
+                    │   Bronze Layer                             │
+                    │ Raw ingestion (Spark)                      │
+                    │ 📓 [`01_bronze_ingestion.ipynb`](notebooks/01_bronze_ingestion.ipynb)
+                    │ 🧠 [`bronze_layer.py`](src/bronze_layer.py)
+                    └─────────┬──────────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │   Silver Layer       │
-                    │ Clean & standardize  │
-                    └─────────┬────────────┘
+                    ┌────────────────────────────────────────────┐
+                    │   Silver Layer                             │
+                    │ Clean & standardize                        │
+                    │ 📓 [`02_silver_cleaning.ipynb`](notebooks/02_silver_cleaning.ipynb)
+                    │ 🧠 [`silver_layer.py`](src/silver_layer.py)
+                    └─────────┬──────────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │    Gold Layer        │
-                    │ KPI Aggregations     │
-                    └─────────┬────────────┘
+                    ┌────────────────────────────────────────────┐
+                    │    Gold Layer                              │
+                    │ KPI Aggregations                           │
+                    │ 📓 [`03_gold_analytics.ipynb`](notebooks/03_gold_analytics.ipynb)
+                    │ 🧠 [`gold_layer.py`](src/gold_layer.py)
+                    └─────────┬──────────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │   SQL View Layer     │
-                    │ BI Consumption       │
-                    └─────────┬────────────┘
+                    ┌──────────────────────────────────────┐
+                    │   SQL / View Layer                   │
+                    │ BI Consumption                       │
+                    │ 📓 [`04_gold_persistence.ipynb`](notebooks/04_gold_persistence.ipynb)
+                    └─────────┬────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │    Dashboard         │
-                    │ Insights & KPIs      │
-                    └──────────────────────┘
+                    ┌──────────────────────────────────────┐
+                    │    Dashboard                        │
+                    │ Insights & KPIs                    │
+                    │ 📓 [`05_dashboard_view.ipynb`](notebooks/05_dashboard_view.ipynb)
+                    └──────────────────────────────────────┘
 
 ---
 ## ⚙️ Tech Stack
