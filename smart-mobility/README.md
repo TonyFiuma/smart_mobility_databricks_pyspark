@@ -74,7 +74,7 @@ All notebooks orchestrate ETL logic implemented in the `src/` package for produc
                     ┌──────────────────────────────────────┐
                     │    Dashboard                        │
                     │ Insights & KPIs                    │
-                    │ 📓 [05_dashboard_view.ipynb](https://github.com/USER/REPO/blob/main/notebooks/05_dashboard_view.ipynb)
+                    │ 📓 [05_dashboard_view.ipynb](https://github.com/TonyFiuma/smart_mobility_databricks_pyspark/blob/main/smart-mobility/notebooks/05_dashboard_view.py)
                     └──────────────────────────────────────┘
 
 ---
