@@ -40,30 +40,38 @@ Dashboard
                     │     CSV Dataset      │
                     └─────────┬────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │   Bronze Layer       │
-                    │ Raw ingestion (Spark)│
-                    └─────────┬────────────┘
+                    ┌────────────────────────────────────────────┐
+                    │   Bronze Layer                             │
+                    │ Raw ingestion (Spark)                      │
+                    │ 🔗 01_bronze_ingestion.ipynb               │
+                    │ 🔗 src/bronze_layer.py                     │
+                    └─────────┬──────────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │   Silver Layer       │
-                    │ Clean & standardize  │
-                    └─────────┬────────────┘
+                    ┌────────────────────────────────────────────┐
+                    │   Silver Layer                             │
+                    │ Clean & standardize                        │
+                    │ 🔗 02_silver_cleaning.ipynb                │
+                    │ 🔗 src/silver_layer.py                     │
+                    └─────────┬──────────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │    Gold Layer        │
-                    │ KPI Aggregations     │
-                    └─────────┬────────────┘
+                    ┌────────────────────────────────────────────┐
+                    │    Gold Layer                              │
+                    │ KPI Aggregations                           │
+                    │ 🔗 03_gold_analytics.ipynb                 │
+                    │ 🔗 src/gold_layer.py                       │
+                    └─────────┬──────────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │   SQL View Layer     │
-                    │ BI Consumption       │
-                    └─────────┬────────────┘
+                    ┌──────────────────────────────────────┐
+                    │   SQL / View Layer                   │
+                    │ BI Consumption                       │
+                    │ 🔗 04_gold_persistence.ipynb         │
+                    └─────────┬────────────────────────────┘
                               ↓
-                    ┌──────────────────────┐
-                    │    Dashboard         │
-                    │ Insights & KPIs      │
-                    └──────────────────────┘
+                    ┌──────────────────────────────────────┐
+                    │    Dashboard                        │
+                    │ Insights & KPIs                    │
+                    │ 🔗 05_dashboard_view.ipynb         │
+                    └──────────────────────────────────────┘
 
 ---
 ## ⚙️ Tech Stack
