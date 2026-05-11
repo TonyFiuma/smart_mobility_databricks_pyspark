@@ -41,46 +41,44 @@ Dashboard (Insights & reporting)
 
 All notebooks orchestrate ETL logic implemented in the `src/` package for production-like modularity.
 
-┌────────────────────────────────────────────┐
-│ Bronze Layer │
-│ Raw ingestion (Spark) │
-│ 📓 01_bronze_ingestion.ipynb
+All notebooks are orchestrating ETL logic implemented in the `src/` package for production-like modularity.
 
-│ 🧠 bronze_layer.py
-
-└────────────────────────────────────────────┘
-↓
-┌────────────────────────────────────────────┐
-│ Silver Layer │
-│ Clean & standardize │
-│ 📓 02_silver_cleaning.ipynb
-
-│ 🧠 silver_layer.py
-
-└────────────────────────────────────────────┘
-↓
-┌────────────────────────────────────────────┐
-│ Gold Layer │
-│ KPI Aggregations │
-│ 📓 03_gold_analytics.ipynb
-
-│ 🧠 gold_layer.py
-
-└────────────────────────────────────────────┘
-↓
-┌────────────────────────────────────────────┐
-│ SQL / View Layer │
-│ BI Consumption │
-│ 📓 04_gold_persistence.ipynb
-
-└────────────────────────────────────────────┘
-↓
-┌────────────────────────────────────────────┐
-│ Dashboard │
-│ Insights & KPIs │
-│ 📓 05_dashboard_view.ipynb
-
-└────────────────────────────────────────────┘
+                    ┌──────────────────────┐
+                    │     CSV Dataset      │
+                    └─────────┬────────────┘
+                              ↓
+                    ┌────────────────────────────────────────────┐
+                    │   Bronze Layer                             │
+                    │ Raw ingestion (Spark)                      │
+                    │ 📓 01_bronze_ingestion.ipynb              │
+                    │ 🧠 src/bronze_layer.py                     │
+                    └─────────┬──────────────────────────────────┘
+                              ↓
+                    ┌────────────────────────────────────────────┐
+                    │   Silver Layer                             │
+                    │ Clean & standardize                        │
+                    │ 📓 02_silver_cleaning.ipynb               │
+                    │ 🧠 src/silver_layer.py                     │
+                    └─────────┬──────────────────────────────────┘
+                              ↓
+                    ┌────────────────────────────────────────────┐
+                    │    Gold Layer                              │
+                    │ KPI Aggregations                           │
+                    │ 📓 03_gold_analytics.ipynb                │
+                    │ 🧠 src/gold_layer.py                      │
+                    └─────────┬──────────────────────────────────┘
+                              ↓
+                    ┌──────────────────────────────────────┐
+                    │   SQL / View Layer                   │
+                    │ BI Consumption                       │
+                    │ 📓 04_gold_persistence.ipynb         │
+                    └─────────┬────────────────────────────┘
+                              ↓
+                    ┌──────────────────────────────────────┐
+                    │    Dashboard                        │
+                    │ Insights & KPIs                    │
+                    │ 📓 05_dashboard_view.ipynb         │
+                    └──────────────────────────────────────┘
 
 ---
 
