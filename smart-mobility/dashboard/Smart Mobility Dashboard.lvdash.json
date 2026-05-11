@@ -1,0 +1,177 @@
+{
+  "datasets": [
+    {
+      "name": "mobility_metrics",
+      "displayName": "Mobility Metrics",
+      "queryLines": [
+        "SELECT\n",
+        "  *\n",
+        "FROM\n",
+        "  workspace.default.smart_mobility_gold_vw"
+      ],
+      "catalog": "workspace",
+      "schema": "default"
+    },
+    {
+      "name": "mobility_by_year",
+      "displayName": "Mobility by Year",
+      "queryLines": [
+        "SELECT\n",
+        "  year,\n",
+        "  SUM(total_value) AS total_mobility\n",
+        "FROM\n",
+        "  workspace.default.smart_mobility_gold_vw\n",
+        "GROUP BY\n",
+        "  year\n",
+        "ORDER BY\n",
+        "  year"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "5bd5b8cb",
+      "displayName": "Smart Mobility Dashboard",
+      "layout": [
+        {
+          "widget": {
+            "name": "mobility_trend",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "mobility_metrics",
+                  "fields": [
+                    {
+                      "name": "vehicle_type",
+                      "expression": "`vehicle_type`"
+                    },
+                    {
+                      "name": "year",
+                      "expression": "`year`"
+                    },
+                    {
+                      "name": "sum(total_value)",
+                      "expression": "SUM(`total_value`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Mobility Trend by Year",
+                "showTitle": true
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "year",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_value)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    }
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "vehicle_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "c3de8abf",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "mobility_by_year",
+                  "fields": [
+                    {
+                      "name": "year",
+                      "expression": "`year`"
+                    },
+                    {
+                      "name": "sum(total_mobility)",
+                      "expression": "SUM(`total_mobility`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Total Mobility by Year",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "year",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_mobility)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "exact",
+                      "places": 0
+                    }
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 9,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "smart-mobility-databricks-pipeline",
+  "description": "End-to-end Medallion architecture pipeline for urban mobility analytics using Databricks (Bronze, Silver, Gold, Dashboard).",
+  "type": "workflow",
+  "architecture": "Medallion (Bronze-Silver-Gold-Serving)",
+
+  "tasks": [
+    {
+      "task_name": "ingest_bronze_mobility_data",
+      "description": "Ingest raw CSV data into Delta Bronze layer with ingestion timestamp",
+      "notebook": "01_bronze_ingestion.py",
+      "depends_on": []
+    },
+    {
+      "task_name": "clean_silver_mobility_data",
+      "description": "Clean, standardize schema and cast data types from Bronze layer",
+      "notebook": "02_silver_cleaning.py",
+      "depends_on": ["bronze_ingestion"]
+    },
+    {
+      "task_name": "compute_gold_mobility_kpis",
+      "description": "Aggregate mobility KPIs and persist Gold Delta table",
+      "notebook": "03_gold_analytics.py",
+      "depends_on": ["silver_transformation"]
+    },
+    {
+      "task_name": "publish_gold_dataset",
+      "description": "Persist Gold dataset to Delta storage layer",
+      "notebook": "04_gold_persistence.py",
+      "depends_on": ["gold_persistence"]
+    },
+    {
+      "task_name": "prepare_dashboard_metrics",
+      "description": "Create SQL view for dashboard consumption over Gold dataset",
+      "notebook": "05_dashboard_view.sql",
+      "depends_on": ["gold_write"]
+    }
+  ],
+
+  "parameters": {
+    "bronze_path": "/Volumes/dev/spark_db/datasets/smart_mobility/bronze",
+    "silver_path": "/Volumes/dev/spark_db/datasets/smart_mobility/silver",
+    "gold_path": "/Volumes/dev/spark_db/datasets/smart_mobility/gold"
+  },
+
+  "schedule": "manual",
+
+  "notifications": {
+    "on_failure": true,
+    "email": "axelfiumano@gmail.com"
+  },
+
+  "retries": {
+    "max_retries": 1,
+    "min_retry_interval_minutes": 10
+  }
+}
