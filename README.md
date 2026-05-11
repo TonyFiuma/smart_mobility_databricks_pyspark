@@ -1,43 +1,41 @@
-# 🚀 Smart Mobility Data Pipeline (Databricks Medallion Architecture)
-# TonyFiuma-smart-mobility-spark
+# 🚀 Smart Mobility Data Pipeline (Databricks)
 
----
+
 
 ## 📌 Overview
 
-This project implements an end-to-end **data engineering pipeline** on Databricks using the **Medallion Architecture (Bronze, Silver, Gold)** to analyze urban mobility services in Italy.
+This project implements an end-to-end **data engineering pipeline** on Databricks using the **Medallion Architecture (Bronze, Silver, Gold)** to analyze urban mobility services in Milan.
 
-The goal is to transform raw mobility data into **clean datasets, business KPIs, and dashboard-ready outputs**.
+The goal is to transform raw mobility data into **business-ready KPIs and interactive dashboards**.
 
 ---
-
 > ⚠️ **Important Note**  
-Some notebooks may appear to contain hardcoded file or table paths. This is intentional and done for **simplicity and portfolio demonstration purposes**.  
-In a production environment, all parameters are fully **dynamic and injected via Databricks Jobs or Workflows**, ensuring environment flexibility (dev/test/prod) without code changes.
-
+> Some notebooks may appear to contain hardcoded file or table paths. This is intentional and done for **simplicity and portfolio demonstration purposes**.  
+> 
+> In a production environment, these values are fully **parameterized and dynamically passed via Databricks Jobs or Workflows**, ensuring flexibility, reusability, and environment independence.  
+> 
+> This approach allows the same codebase to be executed across different environments (dev, test, prod) without any code changes.
 ---
 
 ## 🏗️ Architecture
 
-![Overview Image](smart_mobility_databricks_pyspark/smart-mobilty/images/Architecture.png)
+![Overview Image](images/Architecture.png)
 
-The pipeline follows the Medallion Architecture:
+The pipeline follows the Medallion architecture:
+
 CSV Data
 ↓
-Bronze Layer (Raw ingestion)
+Bronze (Raw ingestion)
 ↓
-Silver Layer (Clean & standardized data)
+Silver (Cleaned & standardized data)
 ↓
-Gold Layer (Aggregated KPIs)
+Gold (Aggregated KPIs)
 ↓
-SQL View Layer (BI consumption)
+SQL View (BI layer)
 ↓
-Dashboard (Insights & reporting)
-
-
+Dashboard
 ---
-
-## 🔧 Implementation Overview
+All notebooks are orchestrating ETL logic implemented in the `src/` package for production-like modularity.
 
 All notebooks orchestrate ETL logic implemented in the `src/` package for production-like modularity.
 
@@ -79,9 +77,9 @@ All notebooks are orchestrating ETL logic implemented in the `src/` package for 
                     │ Insights & KPIs                    │
                     │ 📓 05_dashboard_view.ipynb         │
                     └──────────────────────────────────────┘
+                    └──────────────────────────────────────┘
 
 ---
-
 ## ⚙️ Tech Stack
 
 - Databricks
@@ -92,78 +90,71 @@ All notebooks are orchestrating ETL logic implemented in the `src/` package for 
 
 ---
 
-## 📊 Pipeline Stages
+## 📊 Data Pipeline
 
-### 🥉 Bronze Layer
+### 1. Bronze Layer
 - Raw CSV ingestion
 - Metadata enrichment (ingestion timestamp)
 
-### 🥈 Silver Layer
+### 2. Silver Layer
 - Schema standardization
 - Data cleaning & type casting
 - Duplicate removal
 
-### 🥇 Gold Layer
+### 3. Gold Layer
 - KPI aggregation by year and vehicle type
-- Business-ready metrics generation
+- Business-level metrics preparation
 
-### 📈 Serving Layer
-- SQL views for BI tools and dashboards
+### 4. Serving Layer
+- SQL view creation for dashboard consumption
 
 ---
 
-## 📊 Dashboard
+## 📈 Dashboard
 
-Final dashboards include:
-- Urban mobility trends over time
+The final dashboard includes:
+- Mobility trends over time
 - Comparison between vehicle types
-- Evolution of shared mobility services
+- Evolution of urban mobility services
 
-Built using **Databricks SQL Dashboards**.
+Built using Databricks SQL Dashboards.
 
 ---
 
 ## 📂 Repository Structure
-notebooks/
-├── 01_bronze_ingestion.ipynb
-├── 02_silver_cleaning.ipynb
-├── 03_gold_analytics.ipynb
-├── 04_gold_persistence.ipynb
-└── 05_dashboard_view.ipynb
 
-src/
-├── bronze_layer.py
-├── silver_layer.py
-└── gold_layer.py
+notebooks/
+01_bronze_ingestion.py
+02_silver_cleaning.py
+03_gold_analytics.py
+04_gold_persistence.py
+05_dashboard_view.sql
 
 docs/
-└── architecture.md
+architecture.md
+
 
 ---
 
 ## 🚀 Key Insights
 
-- Urban mobility usage grows steadily over time
+- Urban mobility increases steadily over time
 - Bike sharing is the dominant service
 - New mobility services (scooters, monopattini) emerge after 2019
-- Post-2020 diversification in mobility patterns
+- Strong diversification after 2020
 
 ---
 
-## 🧠 Project Highlights
+## 🧠 Author Notes
 
 This project demonstrates:
 - End-to-end data engineering pipeline design
 - Medallion architecture implementation
-- Modular ETL development with PySpark
-- Production-like code separation (`src/`)
+- ETL development with PySpark
 - BI-ready dataset modeling
-
----
 
 ## 📬 Contact
 
 For questions or collaboration:
 
 📧 [axelfiumano@gmail.com](mailto:axelfiumano@gmail.com)
-
