@@ -79,6 +79,7 @@ All notebooks are orchestrating ETL logic implemented in the `src/` package for 
                     └──────────────────────────────────────┘
                     └──────────────────────────────────────┘
 
+![Overview Image](images/job.png)
 ---
 ## ⚙️ Tech Stack
 
