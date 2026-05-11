@@ -19,7 +19,7 @@ In a production environment, all parameters are fully **dynamic and injected via
 
 ## 🏗️ Architecture
 
-![Architecture](smart_mobilty/images/Architecture.png)
+![Overview Image](smart_mobility/images/ArchitectureDatabricks.png)
 
 The pipeline follows the Medallion Architecture:
 CSV Data
